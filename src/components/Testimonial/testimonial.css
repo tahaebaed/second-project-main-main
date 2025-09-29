@@ -1,0 +1,10 @@
+/* يغير لون نقاط الـ pagination */
+.swiper-pagination-bullet {
+  background-color: #9cfe4f !important;
+  opacity: 0.5; /* نقطة غير مفعّلة */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #9cfe4f !important;
+  opacity: 1; /* النقطة المفعّلة */
+}
