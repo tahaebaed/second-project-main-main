@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import imgworkone from '@/assets/project3.webp'
+import imgworktwo from '@/assets/project2 (1).webp'
+import imgworkthree from '@/assets/project1.webp'
+
 
 export default function Projects() {
   const { isDark } = useTheme();
@@ -31,7 +35,7 @@ export default function Projects() {
       description:
         "Crafting a fresh, vibrant brand identity for Knead That Dough.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "./src/assets/project2-1.webp", 
+      image: {imgworkthree}, 
     },
     {
       id: 3,
@@ -39,7 +43,7 @@ export default function Projects() {
       description:
         "Building innovative software solutions to drive your business forward.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "./src/assets/project3.webp",
+      image: {imgworktwo}
     },
     {
       id: 4,
@@ -47,7 +51,7 @@ export default function Projects() {
       description:
         "Secure, fast, and user-friendly crypto wallet for seamless.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "./src/assets/project4.webp", // صورة جديدة أو إعادة تسمية
+      image:{imgworkone}, // صورة جديدة أو إعادة تسمية
     },
   ];
 
@@ -173,7 +177,7 @@ export default function Projects() {
 
       <section
         className={`py-32 transition-colors duration-300 ${
-          isDark ? "bg-[#0e0f11]" : "bg-white"
+          isDark ? "bg-[#0e0f11]" : "bg-[#cfcaca9c]"
         }`}
       >
         <div className="container mx-auto px-4 max-w-7xl">

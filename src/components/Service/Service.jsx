@@ -3,25 +3,18 @@ import { useTheme } from '../../hooks/useTheme';
 
 export default function Service() {
   const { isDark } = useTheme();
-  
+
   useEffect(() => {
-    // Simulate AOS animations
     const elements = document.querySelectorAll('[data-aos]');
-    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('aos-animate');
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
-    elements.forEach((el) => {
-      observer.observe(el);
-    });
-
+    elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -29,19 +22,22 @@ export default function Service() {
     {
       id: 1,
       title: "Website Development",
-      description: "We are responsive user-friendly websites tailored to your brand, ensuring seamless functionality, engaging design optimized.",
+      description:
+        "We are responsive user-friendly websites tailored to your brand, ensuring seamless functionality, engaging design optimized.",
       delay: 100
     },
     {
       id: 2,
-      title: "Digital Marketing", 
-      description: "Boost your brand with expert digital marketing: SEO, social media, content creation, paid ads, and data-driven strategies for growth.",
+      title: "Digital Marketing",
+      description:
+        "Boost your brand with expert digital marketing: SEO, social media, content creation, paid ads, and data-driven strategies for growth.",
       delay: 200
     },
     {
       id: 3,
       title: "Creative Branding",
-      description: "We design distinctive branding and visual identities that connect with your audience, boosting brand recognition and leaving.",
+      description:
+        "We design distinctive branding and visual identities that connect with your audience, boosting brand recognition and leaving.",
       delay: 300
     }
   ];
@@ -49,170 +45,145 @@ export default function Service() {
   return (
     <>
       <style jsx>{`
-        /* AOS Animation Styles */
-        [data-aos] {
-          opacity: 0;
-          transform: translateY(50px);
-          transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-        }
-        [data-aos].aos-animate {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        [data-aos="fade-up"] {
-          transform: translateY(50px);
-        }
-        [data-aos="fade-up"].aos-animate {
-          transform: translateY(0);
-        }
-        [data-aos="fade-left"] {
-          transform: translateX(50px);
-        }
-        [data-aos="fade-left"].aos-animate {
-          transform: translateX(0);
-        }
-        [data-aos="fade-right"] {
-          transform: translateX(-50px);
-        }
-        [data-aos="fade-right"].aos-animate {
-          transform: translateX(0);
-        }
+  /* AOS Animation Styles */
+  [data-aos] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  }
+  [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-        /* Service Card Styles */
-        .service-card {
-          background: #f8f9fa;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .dark .service-card {
-          background: #18191B;
-        }
-        
-        .service-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: #9CFE4F;
-;
-          transition: left 0.5s ease-in-out;
-          z-index: 0;
-        }
-        
-        .service-card:hover::before {
-          left: 0;
-        }
-        
-        .service-card > * {
-          position: relative;
-          z-index: 1;
-        }
-        
-        .service-card:hover .card-icon {
-          color: #1a1a1a;
-          transform: scale(1.1) rotate(5deg);
-        }
-        
-        .service-card:hover .card-title {
-          color: #1a1a1a;
-        }
-        
-        .service-card:hover .card-description {
-          color: rgba(26, 26, 26, 0.8);
-        }
-        
-        .service-card:hover .learn-more-btn {
-          color: #1a1a1a;
-        }
-        
-        .service-card:hover .learn-more-btn::after {
-          background-color: #1a1a1a;
-          width: 3rem;
-        }
+  /* Service Card Styles */
+  .service-card {
+    background: #f9fafb;           /* لون واضح في اللايت */
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;     /* بورد خفيف للايت */
+  }
+  .dark .service-card {
+    background: #18191B;           /* خلفية الدارك */
+    border-color: #2e2f31;
+  }
 
-        /* Learn More Button Styles */
-        .learn-more-btn {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          font-weight: 600;
-          color: #ffffff;
-          transition: all 0.3s ease;
-        }
-        
-        .learn-more-btn::after {
-          content: '';
-          width: 2.5rem;
-          height: 1px;
-          background-color: white;
-          margin-left: 0.5rem;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .learn-more-btn:hover::after {
-          background-color: #10b981;
-          width: 3rem;
-        }
-        
-        .service-card:not(:hover) .learn-more-btn:hover {
-          color: #10b981;
-        }
+  /* Hover Overlay */
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #9CFE4F;
+    transition: left 0.5s ease-in-out;
+    z-index: 0;
+  }
+  .service-card:hover::before {
+    left: 0;
+  }
 
-        /* Card Icon Animation */
-        .card-icon {
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
 
-        /* Primary Color Definition */
-        .bg-primary {
-          background: linear-gradient(135deg, #10b981, #059669);
-        }
-        
-        .text-primary {
-          color: #10b981;
-        }
-        
-        .border-primary {
-          border-color: #10b981;
-        } 
-      `}</style>
+  /* Text Hover Colors */
+  .service-card:hover .card-title,
+  .service-card:hover .card-description,
+  .service-card:hover .learn-more-btn {
+    color: #1a1a1a !important;   /* أسود واضح في اللايت */
+  }
+  .dark .service-card:hover .card-title,
+  .dark .service-card:hover .card-description,
+  .dark .service-card:hover .learn-more-btn {
+    color: #0e0f11 !important;   /* لون داكن يناسب الدارك */
+  }
 
-      <section className={`relative py-32 transition-colors duration-300 ${
-        isDark ? 'bg-[#0e0f11]' : 'bg-gray-50'
-      }`}>
+  /* Learn More Button Styles */
+  .learn-more-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  .learn-more-btn::after {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background-color: currentColor;
+    margin-left: 0.5rem;
+    transition: width 0.4s ease;
+  }
+  .learn-more-btn:hover::after {
+    width: 3rem;
+  }
+
+  /* Primary Color Definition */
+  .bg-primary {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+  .text-primary {
+    color: #10b981;
+  }
+  .border-primary {
+    border-color: #10b981;
+  } 
+`}</style>
+
+
+      <section
+        className={`relative py-24 transition-colors duration-300 ${
+          isDark ? 'bg-[#0e0f11]' : 'bg-[#cfcaca9c]'
+        }`}
+      >
         <div className="container mx-auto px-4 max-w-7xl">
-          
-          <div className="flex flex-wrap items-end mb-12 lg:mb-16">
-            <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
+          {/* Header */}
+          <div className="flex flex-wrap items-end mb-16">
+            <div className="w-full lg:w-1/2 mb-8">
               <div className="section-title" data-aos="fade-right">
-                <span className="inline-flex items-center text-gray-700 dark:text-white border border-primary rounded-full px-4 py-2 mb-5 transition-colors duration-300">
-                  Our Service 
-                  <span className="w-12 h-px bg-primary ml-2"></span>
+                <span className="inline-flex items-center border border-[#9CFE4F] rounded-full px-4 py-2 mb-5">
+                  Our Service
+                  <span className="w-12 h-px bg-[#9CFE4F] ml-2"></span>
                 </span>
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight transition-colors duration-300">
-                  Innovative Services That<br />
-                  Elevate Your Brand
+                <h2
+                  className={`text-4xl lg:text-5xl font-bold leading-tight ${
+                    isDark ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  Innovative Services That <br /> Elevate Your Brand
                 </h2>
               </div>
             </div>
-            
+
             <div className="w-full lg:w-1/2">
-              <div className="text-box lg:float-right w-[330px] " data-aos="fade-left">
-                <p className="text-gray-600 dark:text-[#9E9FA0] text-base lg:text-lg transition-colors duration-300">
-                  We are a <span className="text-gray-900 dark:text-white font-semibold">digital Creative agency</span> with 25 years of experience, specializing in delivering cutting-edge
+              <div
+                className="text-box lg:float-right w-[330px]"
+                data-aos="fade-left"
+              >
+                <p
+                  className={`text-base lg:text-lg ${
+                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  }`}
+                >
+                  We are a{' '}
+                  <span className={isDark ? 'text-white' : 'text-gray-900'}>
+                    digital Creative agency
+                  </span>{' '}
+                  with 25 years of experience, specializing in delivering
+                  cutting-edge
                 </p>
               </div>
             </div>
           </div>
 
+          {/* Cards */}
           <div className="flex flex-wrap justify-center -mx-4">
-            
             {services.map((service, index) => (
-              <div 
+              <div
                 key={service.id}
                 className={`w-full md:w-1/2 lg:w-1/3 px-4 mb-8 ${
                   index === 1 ? 'lg:mt-16' : index === 2 ? 'lg:mt-32' : ''
@@ -220,25 +191,31 @@ export default function Service() {
                 data-aos="fade-up"
                 data-aos-delay={service.delay}
               >
-                <div className="service-card p-10 border border-transparent">
-                  <div className="card-icon text-6xl mb-6">
-                    {service.icon}
-                  </div>
-                  <div className="content">
-                    <h4 className="card-title text-2xl font-bold text-gray-900 dark:text-white mb-5 transition-colors duration-300">
-                      {service.title}
-                    </h4>
-                    <p className="card-description text-gray-600 dark:text-gray-400 mb-6 transition-colors duration-300">
-                      {service.description}
-                    </p>
-                    <button className="learn-more-btn">
-                      Learn More
-                    </button>
-                  </div>
+                <div className="service-card p-10">
+                  <h4
+                    className={`card-title text-2xl font-bold mb-5 transition-colors ${
+                      isDark ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {service.title}
+                  </h4>
+                  <p
+                    className={`card-description mb-6 transition-colors ${
+                      isDark ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {service.description}
+                  </p>
+                  <button
+                    className={`learn-more-btn ${
+                      isDark ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    Learn More
+                  </button>
                 </div>
               </div>
             ))}
-
           </div>
         </div>
       </section>
