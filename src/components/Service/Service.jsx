@@ -174,7 +174,7 @@ export default function Service() {
         }
       `}</style>
 
-      <section className="relative py-32 bg-[#0e0f11] transition-colors duration-300">
+      <section className="relative py-32 bg-red-200  dark:bg-[#0e0f11]  transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl">
           
           <div className="flex flex-wrap items-end mb-12 lg:mb-16">

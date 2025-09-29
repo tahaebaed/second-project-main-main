@@ -11,6 +11,18 @@
 ::-webkit-scrollbar-track {
   background: #111;
 }
-body {
-  background: #000;
+
+
+  :root {
+  --color-text-primary: #111827; /* Tailwind's gray-900 */
+  --color-bg-primary: #ffffff;   /* Tailwind's white */
+  --color-brand-accent: #3b82f6; /* Tailwind's blue-500 */
+}
+
+/* Override variables for the dark theme.
+   This block is active only when the dark class is present on html. */
+html.dark {
+  --color-text-primary: #f9fafb; /* Tailwind's gray-50 */
+  --color-bg-primary: #111827;   /* Tailwind's gray-900 */
+  --color-brand-accent: #60a5fa; /* Tailwind's blue-400 */
 }

@@ -5,19 +5,21 @@ export default function Header() {
   const [isDark, setIsDark] = useState(false);
 
   const toggleTheme = () => {
+  document.documentElement.classList.toggle('dark');
     setIsDark(!isDark);
+
   };
 
   const navItems = ['Home', 'Pages', 'Portfolio', 'Blog', 'Contact'];
 
   return (
     <div
-      className={`transition-colors duration-300 ${
-        isDark ? 'bg-gray-900' : 'bg-transparent'
+      className={` transition-colors duration-300 ${
+        isDark ? 'bg-gray-900' : 'bg-red-500'
       }`}
     >
-      <header className="px-6 py-4 fixed top-0 left-0 w-full z-50">
-        <nav className="max-w-7xl mx-auto flex items-center justify-between bg-black/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
+      <header className="px-6 py-4 fixed top-0 left-0 w-full z-50 ">
+        <nav className="max-w-7xl mx-auto flex  items-center justify-between bg-black/30 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
