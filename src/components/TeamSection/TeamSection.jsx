@@ -1,26 +1,16 @@
 import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TeamSection = () => {
   useEffect(() => {
-    const elements = document.querySelectorAll("[data-aos]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("aos-animate");
-            void entry.target.offsetWidth;
-            entry.target.classList.add("aos-animate");
-          } else {
-            entry.target.classList.remove("aos-animate");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => elements.forEach((el) => observer.unobserve(el));
+    AOS.init({
+      duration: 800, // مدة الأنيميشن بالميلي ثانية
+      easing: "ease-in-out",
+      once: false, // يجعل الأنيميشن يعمل كل مرة تدخل العنصر
+      mirror: true, // يجعل الأنيميشن يعمل عند السحب من أعلى لأسفل والعكس
+    });
+    AOS.refresh();
   }, []);
 
   const teamMembers = [
@@ -67,6 +57,23 @@ const TeamSection = () => {
           height: 2px;
           background: rgb(77, 74, 74);
         }
+        .plus-icon {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
+          background: white;
+          color: black;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+          z-index: 10;
+        }
       `}</style>
 
       <section className="bg-[#0e0f11] py-20 px-6">
@@ -107,6 +114,7 @@ const TeamSection = () => {
                 className="team-card"
                 data-aos="fade-up"
                 data-aos-delay={index * 200}
+                data-aos-once="false"
               >
                 {/* Image with fixed plus */}
                 <div className="relative group">
@@ -115,12 +123,7 @@ const TeamSection = () => {
                     alt={member.name}
                     className="team-image w-full h-[400px] object-cover rounded-xl"
                   />
-                  {/* ثابت فوق الصورة */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 bg-green-500 text-black rounded-full flex items-center justify-center text-3xl font-bold shadow-lg">
-                      +
-                    </div>
-                  </div>
+                  <div className="plus-icon">+</div>
                 </div>
 
                 {/* Info */}

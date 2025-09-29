@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Calendar } from 'lucide-react';
+import React, { useEffect } from 'react';
 
-const Articles = () => {
-  const [isVisible, setIsVisible] = useState({});
-
-  // Initialize intersection observer for animations
+const ArticlesSection = () => {
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('data-animate-id');
-          setIsVisible(prev => ({ ...prev, [id]: true }));
+    // AOS Animation Logic
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('[data-aos]');
+      
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Check if element is in viewport
+        if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2) {
+          element.classList.add('aos-animate');
+        } else {
+          element.classList.remove('aos-animate');
         }
       });
-    }, observerOptions);
-
-    // Observe all elements with data-animate-id
-    const animatedElements = document.querySelectorAll('[data-animate-id]');
-    animatedElements.forEach((el) => observer.observe(el));
-
-    return () => {
-      animatedElements.forEach((el) => observer.unobserve(el));
     };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const articles = [
@@ -36,187 +32,123 @@ const Articles = () => {
       title: "MKT Gency for your online business Plane.",
       description: "Strategic marketing agency boosting to your online business success.",
       date: "15 Apr, 2024",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop"
     },
     {
       id: 2,
-      category: "Website", 
+      category: "Website",
       title: "Meeting Collaboration for your business.",
       description: "Strategic marketing agency boosting to your online business success.",
       date: "15 Apr, 2024",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop"
     }
   ];
 
   return (
     <>
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        .fade-up-enter {
+      <style>{`
+        [data-aos] {
           opacity: 0;
           transform: translateY(50px);
-          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .fade-up-active {
+        [data-aos].aos-animate {
           opacity: 1;
           transform: translateY(0);
         }
         
-        .text-flip {
-          position: relative;
-          display: inline-block;
-          overflow: hidden;
+        [data-aos="fade-up"] {
+          transform: translateY(50px);
         }
         
-        .text-flip .text {
-          display: block;
-          transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        [data-aos="fade-left"] {
+          transform: translateX(50px);
         }
         
-        .text-flip .text:last-child {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          transform: translateY(100%);
+        [data-aos="fade-right"] {
+          transform: translateX(-50px);
         }
         
-        .theme-btn:hover .text:first-child {
-          transform: translateY(-100%);
-        }
-        
-        .theme-btn:hover .text:last-child {
-          transform: translateY(0);
-        }
-        
-        .blog-card {
-          transition: all 0.4s ease;
-        }
-        
-        .blog-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        
-        .blog-image {
-          transition: transform 0.6s ease;
-        }
-        
-        .blog-card:hover .blog-image {
-          transform: scale(1.1);
-        }
-        
-        .category-tag {
-          transition: all 0.3s ease;
-        }
-        
-        .category-tag:hover {
-          background-color: #22c55e;
-          transform: scale(1.05);
-        }
-        
-        .blog-title {
-          transition: color 0.3s ease;
-        }
-        
-        .blog-title:hover {
-          color: #22c55e;
-        }
-        
-        @media (max-width: 1024px) {
-          .blog-card {
-            flex-direction: column;
-          }
+        [data-aos].aos-animate[data-aos="fade-up"],
+        [data-aos].aos-animate[data-aos="fade-left"],
+        [data-aos].aos-animate[data-aos="fade-right"] {
+          transform: translate(0, 0);
         }
       `}</style>
-
-      <section className="bg-gray-900 py-20 px-4">
+      
+      <div className="min-h-screen bg-black text-white py-16 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-16">
-            {/* Title */}
-            <div 
-              className={`mb-8 lg:mb-0 fade-up-enter ${isVisible['header'] ? 'fade-up-active' : ''}`}
-              data-animate-id="header"
-            >
-              <div className="inline-block border border-green-500 text-green-500 px-6 py-2 rounded-full text-sm font-medium mb-6">
-                Latest Articles
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight max-w-2xl">
-                Stay Updated with Our Recent Articles
-              </h2>
+          <div className="mb-16" data-aos="fade-up">
+            <div className="inline-block border border-green-400 rounded-full px-6 py-2 mb-6">
+              <span className="text-green-400 text-sm font-medium">Latest Articles</span>
             </div>
             
-            {/* View All Button */}
-            <div 
-              className={`text-center lg:text-right fade-up-enter ${isVisible['button'] ? 'fade-up-active' : ''}`}
-              data-animate-id="button"
-            >
-              <button className="theme-btn bg-green-500 hover:bg-green-400 text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                <span className="text-flip">
-                  <span className="text">View All Blogs</span>
-                  <span className="text">View All Blogs</span>
-                </span>
+            <div className="flex justify-between items-end">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold max-w-2xl leading-tight">
+                Stay Updated with Our Recent Articles
+              </h1>
+              
+              <button className="hidden md:block bg-green-400 text-black font-semibold px-8 py-4 rounded-full hover:bg-green-500 transition-colors">
+                View All Blogs
               </button>
             </div>
           </div>
 
           {/* Articles Grid */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             {articles.map((article, index) => (
-              <div 
+              <div
                 key={article.id}
-                className={`blog-card bg-gray-800 rounded-2xl overflow-hidden shadow-xl fade-up-enter ${isVisible[`article-${article.id}`] ? 'fade-up-active' : ''}`}
-                data-animate-id={`article-${article.id}`}
-                style={{ 
-                  transitionDelay: `${index * 200}ms`
-                }}
+                data-aos={index === 0 ? "fade-right" : "fade-left"}
+                className="bg-zinc-900 rounded-2xl overflow-hidden hover:bg-zinc-800 transition-colors cursor-pointer"
               >
-                <div className="flex flex-col xl:flex-row h-full">
+                <div className="flex flex-col md:flex-row">
                   {/* Image */}
-                  <div className="xl:w-1/2 h-64 xl:h-auto relative overflow-hidden">
-                    <img 
+                  <div className="md:w-2/5">
+                    <img
                       src={article.image}
                       alt={article.title}
-                      className="blog-image w-full h-full object-cover"
+                      className="w-full h-64 md:h-full object-cover grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r xl:bg-gradient-to-r from-transparent to-gray-900/20"></div>
                   </div>
                   
                   {/* Content */}
-                  <div className="xl:w-1/2 p-8 flex flex-col justify-center">
-                    {/* Category */}
-                    <div className="mb-4">
-                      <span className="category-tag inline-block bg-green-500 text-black px-4 py-2 rounded-full text-sm font-semibold cursor-pointer">
+                  <div className="md:w-3/5 p-8 flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block bg-zinc-800 text-gray-300 text-sm px-4 py-2 rounded-full mb-4">
                         {article.category}
                       </span>
+                      
+                      <h3 className="text-2xl font-bold mb-4 leading-tight">
+                        {article.title}
+                      </h3>
+                      
+                      <p className="text-gray-400 mb-6">
+                        {article.description}
+                      </p>
                     </div>
                     
-                    {/* Title */}
-                    <h4 className="blog-title text-2xl font-bold text-white mb-4 cursor-pointer">
-                      {article.title}
-                    </h4>
-                    
-                    {/* Description */}
-                    <p className="text-gray-400 mb-6 leading-relaxed text-base">
-                      {article.description}
-                    </p>
-                    
-                    {/* Date */}
-                    <div className="flex items-center text-green-500 text-sm font-medium">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      <span>{article.date}</span>
+                    <div className="text-gray-500 text-sm">
+                      {article.date}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Mobile View All Button */}
+          <div className="md:hidden text-center" data-aos="fade-up">
+            <button className="bg-green-400 text-black font-semibold px-8 py-4 rounded-full hover:bg-green-500 transition-colors">
+              View All Blogs
+            </button>
+          </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };
 
-export default Articles;
+export default ArticlesSection;

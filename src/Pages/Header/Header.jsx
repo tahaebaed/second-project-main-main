@@ -50,9 +50,15 @@ export default function Header() {
             </button>
 
             {/* CTA Button */}
-            <button className="bg-gradient-to-r from-green-400 to-green-500 text-gray-900 font-semibold px-8 py-3 rounded-full hover:shadow-lg hover:shadow-green-500/50 transition-all hover:scale-105">
-              LETS TALK
-            </button>
+             {/* Button */}
+              <div className="text-center lg:text-left" data-aos="fade-up" data-aos-delay="500">
+                <button className="theme-btn">
+                  <span className="text-flip">
+                    <span className="text">LETS TALKLETS </span>
+                    <span className="text">LETS TALKLETS </span>
+                  </span>
+                </button>
+              </div>
           </div>
         </nav>
       </header>

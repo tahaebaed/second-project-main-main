@@ -165,10 +165,10 @@ export default function Projects() {
 
         /* Theme Button */
         .theme-btn {
-          background: linear-gradient(135deg, #10b981, #059669);
-          color: white;
-          padding: 14px 32px;
-          border-radius: 50px;
+          background:#9CFE4F;
+          color: black;
+          padding: 10px 30px;
+          border-radius: 30px;
           font-weight: 600;
           transition: all 0.3s ease;
           display: inline-block;
@@ -176,13 +176,7 @@ export default function Projects() {
           border: none;
           cursor: pointer;
         }
-        
-        .theme-btn:hover {
-          background: linear-gradient(135deg, #059669, #047857);
-          transform: translateY(-2px);
-          box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-        }
-
+     
         /* Sub Title */
         .sub-title {
           color: #10b981;
@@ -196,7 +190,7 @@ export default function Projects() {
         }
       `}</style>
 
-      <section className="py-32 bg-gray-950">
+      <section className="py-32 bg-[#0e0f11]">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16" data-aos="zoom-in">
             <span className="sub-title inline-block mb-6">Complete Work</span>
@@ -223,7 +217,7 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="content">
-                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-green-400 transition-colors">
+                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-[#9CFE4F] transition-colors">
                     {projects[0].title}
                   </h4>
                   <p className="text-gray-400">{projects[0].description}</p>
@@ -245,7 +239,7 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="content">
-                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-green-400 transition-colors">
+                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-[#9CFE4F] transition-colors">
                     {projects[2].title}
                   </h4>
                   <p className="text-gray-400">{projects[2].description}</p>
@@ -269,7 +263,7 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="content">
-                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-green-400 transition-colors">
+                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-[#9CFE4F] transition-colors">
                     {projects[1].title}
                   </h4>
                   <p className="text-gray-400">{projects[1].description}</p>
@@ -291,7 +285,7 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="content">
-                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-green-400 transition-colors">
+                  <h4 className="text-2xl font-bold text-white mb-3 hover:text-[#9CFE4F] transition-colors">
                     {projects[3].title}
                   </h4>
                   <p className="text-gray-400">{projects[3].description}</p>

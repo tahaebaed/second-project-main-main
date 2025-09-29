@@ -6,6 +6,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./App.css";
 import Header from "./Pages/Header/Header";
 import Home from "./Pages/Home";
+import Footer from "./Pages/Footer";
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,6 +27,7 @@ function App() {
         <div id="smooth-content">
           <Header />
       <Home />
+      <Footer />
         </div>
       </div>
     </>

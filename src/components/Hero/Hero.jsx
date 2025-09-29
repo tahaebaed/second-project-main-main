@@ -75,7 +75,7 @@ const Hero = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-black pt-20  overflow-hidden">
+      <section className="relative min-h-screen bg-black pt-46 overflow-hidden">
         
         {/* Background Blur Shapes */}
         <div className="absolute -top-1/5 -left-1/4 z-0">
@@ -109,7 +109,7 @@ const Hero = () => {
                 />
                 
                 {/* Rotating Element */}
-                <div className="absolute right-0 -top-8 sm:-top-12 lg:-top-20 transform -translate-y-1/2 hidden sm:block">
+                <div className="absolute right-62 -top-8 sm:-top-12 lg:-top-20 transform -translate-y-1/2 hidden sm:block">
                   <div 
                     className={`rotating-element transition-all duration-1000 ${
                       animationStarted ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
@@ -137,14 +137,17 @@ const Hero = () => {
 
             {/* Learn More Button */}
             <div className="mt-8 lg:mt-12 ">
-              <button 
-                className={`inline-flex items-center justify-center bg-green-500 hover:bg-green-400 px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-full text-black font-bold text-sm sm:text-base transition-all duration-1000 hover:scale-105 ${
-                  animationStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ transitionDelay: '2.3s' }}
-              >
-                Learn More
-              </button>
+              
+                 {/* Button */}
+              <div className="text-center lg:text-left" data-aos="fade-up" data-aos-delay="500">
+                <button className="theme-btn"
+                >
+                  <span className="text-flip">
+                    <span className="text">View All</span>
+                    <span className="text">View All</span>
+                  </span>
+                </button>
+              </div>
             </div>
 
           </div>
