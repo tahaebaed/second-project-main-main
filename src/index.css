@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #111827;
+  --bg-secondary: #f8f9fa;
+  --text-secondary: #6b7280;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #111827;
+  --text-primary: #f9fafb;
+  --bg-secondary: #18191b;
+  --text-secondary: #9ca3af;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 ::-webkit-scrollbar {
   width: 2px;
 }
@@ -12,10 +32,9 @@
   background: #111;
 }
 
-
-  :root {
+:root {
   --color-text-primary: #111827; /* Tailwind's gray-900 */
-  --color-bg-primary: #ffffff;   /* Tailwind's white */
+  --color-bg-primary: #ffffff; /* Tailwind's white */
   --color-brand-accent: #3b82f6; /* Tailwind's blue-500 */
 }
 
@@ -23,6 +42,6 @@
    This block is active only when the dark class is present on html. */
 html.dark {
   --color-text-primary: #f9fafb; /* Tailwind's gray-50 */
-  --color-bg-primary: #111827;   /* Tailwind's gray-900 */
+  --color-bg-primary: #111827; /* Tailwind's gray-900 */
   --color-brand-accent: #60a5fa; /* Tailwind's blue-400 */
 }

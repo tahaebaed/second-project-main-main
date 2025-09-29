@@ -76,7 +76,7 @@ const TeamSection = () => {
         }
       `}</style>
 
-      <section className="bg-[#0e0f11] py-20 px-6">
+      <section className="bg-gray-50 dark:bg-[#0e0f11] py-20 px-6 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-16">
@@ -88,7 +88,7 @@ const TeamSection = () => {
                 Our Team
               </span>
               <h2
-                className="text-4xl sm:text-5xl font-bold text-white leading-snug"
+                className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-snug transition-colors duration-300"
                 data-aos="fade-up"
                 data-aos-delay="150"
               >

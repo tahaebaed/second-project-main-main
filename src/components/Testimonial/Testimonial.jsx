@@ -36,7 +36,7 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <section className="relative py-20 md:py-32 bg-[#18191B] overflow-hidden">
+    <section className="relative py-20 md:py-32 bg-gray-50 dark:bg-[#18191B] overflow-hidden transition-colors duration-300">
       {/* Decorative circle top right */}
       <div className="absolute top-0 right-0 w-[300px] md:w-[450px] h-[300px] md:h-[450px] rounded-full border-[40px] md:border-[60px] border-white/5 translate-x-1/3 -translate-y-1/3"></div>
 
@@ -49,7 +49,7 @@ const Testimonial = () => {
           <span className="inline-block px-4 py-1 text-sm border border-green-400 rounded-full text-green-400 mb-4">
             Testimonial
           </span>
-          <h2 className="text-2xl md:text-4xl font-bold text-white">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
             Success Stories From Around the Globe
           </h2>
         </div>
@@ -70,7 +70,7 @@ const Testimonial = () => {
 
           {/* Swiper Testimonials */}
           <div className="w-full lg:w-2/3 relative" data-aos="fade-left">
-            <div className="absolute -top-10 left-0 text-[60px] md:text-[90px] font-extrabold text-white/5 select-none">
+            <div className="absolute -top-10 left-0 text-[60px] md:text-[90px] font-extrabold text-gray-200 dark:text-white/5 select-none transition-colors duration-300">
               TESTIMONIAL
             </div>
 
@@ -93,15 +93,15 @@ const Testimonial = () => {
                       ))}
                   </ul>
 
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-6 transition-colors duration-300">
                     {item.text}
                   </p>
 
                   <div className="mt-4">
-                    <h4 className="text-white font-bold text-lg md:text-xl">
+                    <h4 className="text-gray-900 dark:text-white font-bold text-lg md:text-xl transition-colors duration-300">
                       {item.author}
                     </h4>
-                    <p className="text-gray-400">{item.role}</p>
+                    <p className="text-gray-500 dark:text-gray-400 transition-colors duration-300">{item.role}</p>
                   </div>
                 </SwiperSlide>
               ))}

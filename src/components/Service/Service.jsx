@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+import { useTheme } from '../../hooks/useTheme';
 
 export default function Service() {
+  const { isDark } = useTheme();
+  
   useEffect(() => {
     // Simulate AOS animations
     const elements = document.querySelectorAll('[data-aos]');
@@ -77,10 +80,14 @@ export default function Service() {
 
         /* Service Card Styles */
         .service-card {
-          background: #18191B;
+          background: #f8f9fa;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
+        }
+        
+        .dark .service-card {
+          background: #18191B;
         }
         
         .service-card::before {
@@ -174,17 +181,19 @@ export default function Service() {
         } 
       `}</style>
 
-      <section className="relative py-32 bg-red-200  dark:bg-[#0e0f11]  transition-colors duration-300">
+      <section className={`relative py-32 transition-colors duration-300 ${
+        isDark ? 'bg-[#0e0f11]' : 'bg-gray-50'
+      }`}>
         <div className="container mx-auto px-4 max-w-7xl">
           
           <div className="flex flex-wrap items-end mb-12 lg:mb-16">
             <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
               <div className="section-title" data-aos="fade-right">
-                <span className="inline-flex items-center text-white border border-primary rounded-full px-4 py-2 mb-5">
+                <span className="inline-flex items-center text-gray-700 dark:text-white border border-primary rounded-full px-4 py-2 mb-5 transition-colors duration-300">
                   Our Service 
                   <span className="w-12 h-px bg-primary ml-2"></span>
                 </span>
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight transition-colors">
+                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight transition-colors duration-300">
                   Innovative Services That<br />
                   Elevate Your Brand
                 </h2>
@@ -193,8 +202,8 @@ export default function Service() {
             
             <div className="w-full lg:w-1/2">
               <div className="text-box lg:float-right w-[330px] " data-aos="fade-left">
-                <p className="text-[#9E9FA0]  text-base lg:text-lg transition-colors">
-                  We are a <span className="text-white font-semibold">digital Creative agency</span> with 25 years of experience, specializing in delivering cutting-edge
+                <p className="text-gray-600 dark:text-[#9E9FA0] text-base lg:text-lg transition-colors duration-300">
+                  We are a <span className="text-gray-900 dark:text-white font-semibold">digital Creative agency</span> with 25 years of experience, specializing in delivering cutting-edge
                 </p>
               </div>
             </div>
@@ -216,10 +225,10 @@ export default function Service() {
                     {service.icon}
                   </div>
                   <div className="content">
-                    <h4 className="card-title text-2xl font-bold text-white mb-5 transition-colors">
+                    <h4 className="card-title text-2xl font-bold text-gray-900 dark:text-white mb-5 transition-colors duration-300">
                       {service.title}
                     </h4>
-                    <p className="card-description text-gray-400 mb-6 transition-colors">
+                    <p className="card-description text-gray-600 dark:text-gray-400 mb-6 transition-colors duration-300">
                       {service.description}
                     </p>
                     <button className="learn-more-btn">
