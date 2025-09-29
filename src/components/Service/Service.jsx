@@ -178,7 +178,7 @@ export default function Service() {
         
         .border-primary {
           border-color: #10b981;
-        }
+        } 
       `}</style>
 
       <section className={`relative py-32 transition-colors duration-300 ${

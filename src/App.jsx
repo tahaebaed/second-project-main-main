@@ -27,9 +27,10 @@ function App() {
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Header />
-          {/* <About /> */}
           <Home />
+    <About /> 
           <Footer />
+
         </div>
       </div>
     </ThemeProvider>
