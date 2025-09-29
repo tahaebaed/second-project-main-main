@@ -1,25 +1,19 @@
 import React, { useEffect } from "react";
 import { useTheme } from "../../hooks/useTheme";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Projects() {
   const { isDark } = useTheme();
-  useEffect(() => {
-    const elements = document.querySelectorAll("[data-aos]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("aos-animate");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+  // ✅ تهيئة AOS للأنيميشن
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // سرعة الحركة
+      easing: "ease-in-out", // نوع الحركة
+      once: true, // تشغيل مرة واحدة فقط
+      offset: 100,
+    });
   }, []);
 
   const projects = [
@@ -29,7 +23,7 @@ export default function Projects() {
       description:
         "We develop secure, user-friendly banking apps, streamlining financial services",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "banking-app",
+      image: "./src/assets/project1.webp",
     },
     {
       id: 2,
@@ -37,7 +31,7 @@ export default function Projects() {
       description:
         "Crafting a fresh, vibrant brand identity for Knead That Dough.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "brand-identity",
+      image: "./src/assets/project2-1.webp", 
     },
     {
       id: 3,
@@ -45,7 +39,7 @@ export default function Projects() {
       description:
         "Building innovative software solutions to drive your business forward.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "website-header",
+      image: "./src/assets/project3.webp",
     },
     {
       id: 4,
@@ -53,62 +47,63 @@ export default function Projects() {
       description:
         "Secure, fast, and user-friendly crypto wallet for seamless.",
       categories: ["Website", "Landing Page", "UI/UX"],
-      image: "crypto-wallet",
+      image: "./src/assets/project4.webp", // صورة جديدة أو إعادة تسمية
     },
   ];
 
-  const ProjectImage = ({ type, className }) => {
-    const imageComponents = {
-      "banking-app": (
-        <div className={`relative rounded-2xl overflow-hidden ${className}`}>
-          <img
-            src="./src/assets/project1.webp "
-            alt="Banking Mobile App"
-            className="w-full h-full object-cover project-image"
-          />
-        </div>
-      ),
-      "brand-identity": (
-        <div className={`relative rounded-2xl overflow-hidden ${className}`}>
-          <img
-            src="./src/assets/project2 (1).webp"
-            alt="Brand Identity Design"
-            className="w-full h-full object-cover project-image"
-          />
-        </div>
-      ),
-      "website-header": (
-        <div className={`relative rounded-2xl overflow-hidden ${className}`}>
-          <img
-            src="./src/assets/project3.webp "
-            alt="Website Development"
-            className="w-full h-full object-cover project-image"
-          />
-        </div>
-      ),
-      "crypto-wallet": (
-        <div
-          className={`relative bg-gray-200 rounded-2xl overflow-hidden ${className}`}
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src="./src/assets/project2 (1).webp"
-              alt="Website Development"
-              className="w-full h-full object-cover project-image"
-            />{" "}
+  // ✅ مكون بطاقة المشروع
+  const ProjectCard = ({ project, delay, imageHeight }) => (
+    <div
+      className="project-item group"
+      data-aos="fade-up"
+      data-aos-delay={delay}
+    >
+      <div className="relative overflow-hidden rounded-2xl mb-6">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className={`w-full ${imageHeight} object-cover project-image`}
+        />
+        <div className="absolute inset-0 bg-black/25 flex items-center justify-center project-overlay">
+          <div className="project-categories flex space-x-2">
+            {project.categories.map((category, index) => (
+              <span
+                key={index}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  isDark ? "bg-white text-black" : "bg-black text-white"
+                }`}
+              >
+                {category}
+              </span>
+            ))}
           </div>
         </div>
-      ),
-    };
-
-    return imageComponents[type] || imageComponents["banking-app"];
-  };
+      </div>
+      <h4
+        className={`
+          text-2xl font-bold mb-3 hover:text-[#9CFE4F] transition-colors duration-300
+          ${isDark ? "text-white" : "text-gray-900"}
+        `}
+      >
+        {project.title}
+      </h4>
+      <p
+        className={`
+          text-gray-600 transition-colors duration-300
+          ${isDark ? "dark:text-gray-400" : ""}
+        `}
+      >
+        {project.description}
+      </p>
+    </div>
+  );
 
   return (
     <>
       <style jsx>{`
         /* AOS Animation */
-        [data-aos] {
+        .project-item [data-aos] {
           opacity: 0;
           transform: translateY(50px);
           transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
@@ -118,34 +113,12 @@ export default function Projects() {
           transform: translateY(0);
         }
 
-        /* Project */
-        .project-item {
-          cursor: pointer;
-          position: relative;
-        }
-
+        /* Hover Zoom */
         .project-image {
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .project-item:hover .project-image {
           transform: scale(1.1);
-        }
-
-        .project-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.25);
-          z-index: 20;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .project-categories {
-          opacity: 1;
-          transform: none;
-          transition: none;
         }
 
         /* Button Flip Animation */
@@ -154,23 +127,19 @@ export default function Projects() {
           display: inline-block;
           overflow: hidden;
         }
-
         .text-flip .text {
           display: inline-block;
           transition: transform 0.3s ease;
         }
-
         .text-flip .text:last-child {
           position: absolute;
           top: 0;
           left: 0;
           transform: translateY(100%);
         }
-
         .theme-btn:hover .text-flip .text:first-child {
           transform: translateY(-100%);
         }
-
         .theme-btn:hover .text-flip .text:last-child {
           transform: translateY(0);
         }
@@ -203,21 +172,17 @@ export default function Projects() {
       `}</style>
 
       <section
-        className={
-          isDark
-            ? "py-32 bg-[#0e0f11] transition-colors duration-300"
-            : "py-32 bg-white transition-colors duration-300"
-        }
+        className={`py-32 transition-colors duration-300 ${
+          isDark ? "bg-[#0e0f11]" : "bg-white"
+        }`}
       >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16" data-aos="zoom-in">
             <span className="sub-title inline-block mb-6">Complete Work</span>
             <h2
-              className={
-                isDark
-                  ? "text-4xl lg:text-5xl font-bold text-white leading-tight transition-colors duration-300"
-                  : "text-4xl lg:text-5xl font-bold text-gray-900 leading-tight transition-colors duration-300"
-              }
+              className={`text-4xl lg:text-5xl font-bold leading-tight transition-colors duration-300 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
             >
               Creative Projects We've
               <br />
@@ -226,139 +191,19 @@ export default function Projects() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* العمود الأيسر */}
             <div className="lg:col-span-7 space-y-16">
-              {/* Project 1 */}
-              <div
-                className="project-item group"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div className="relative overflow-hidden rounded-2xl mb-6">
-                  <ProjectImage type="banking-app" className="w-full h-80" />
-                  <div className="project-overlay">
-                    <div className="project-categories flex space-x-2">
-                      {projects[0].categories.map((category, index) => (
-                        <span
-                          key={index}
-                          className={`bg-white text-black px-3 py-1 rounded-full text-sm font-medium ${isDark ? "bg-white text-black" : "bg-black text-white"}`}
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="content">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-[#9CFE4F] transition-colors duration-300">
-                    {projects[0].title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                    {projects[0].description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Project 3 */}
-              <div
-                className="project-item group"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <div className="relative overflow-hidden rounded-2xl mb-6">
-                  <ProjectImage type="website-header" className="w-full h-80" />
-                  <div className="project-overlay">
-                    <div className="project-categories flex space-x-2">
-                      {projects[2].categories.map((category, index) => (
-                        <span
-                          key={index}
-                          className="bg-white text-black px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="content">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-[#9CFE4F] transition-colors duration-300">
-                    {projects[2].title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                    {projects[2].description}
-                  </p>
-                </div>
-              </div>
+              <ProjectCard project={projects[0]} delay={100} imageHeight="h-80" />
+              <ProjectCard project={projects[2]} delay={300} imageHeight="h-80" />
             </div>
 
+            {/* العمود الأيمن */}
             <div className="lg:col-span-5 space-y-16">
-              {/* Project 2 */}
-              <div
-                className="project-item group"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div className="relative overflow-hidden rounded-2xl mb-6">
-                  <ProjectImage type="brand-identity" className="w-full h-64" />
-                  <div className="project-overlay">
-                    <div className="project-categories flex space-x-2">
-                      {projects[1].categories.map((category, index) => (
-                        <span
-                          key={index}
-                          className="bg-white text-black px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="content">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-[#9CFE4F] transition-colors duration-300">
-                    {projects[1].title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                    {projects[1].description}
-                  </p>
-                </div>
-              </div>
+              <ProjectCard project={projects[1]} delay={200} imageHeight="h-64" />
+              <ProjectCard project={projects[3]} delay={400} imageHeight="h-64" />
 
-              {/* Project 4 */}
-              <div
-                className="project-item group"
-                data-aos="fade-up"
-                data-aos-delay="400"
-              >
-                <div className="relative overflow-hidden rounded-2xl mb-6">
-                  <ProjectImage type="crypto-wallet" className="w-full h-64" />
-                  <div className="project-overlay">
-                    <div className="project-categories flex space-x-2">
-                      {projects[3].categories.map((category, index) => (
-                        <span
-                          key={index}
-                          className="bg-white text-black px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="content">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-[#9CFE4F] transition-colors duration-300">
-                    {projects[3].title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                    {projects[3].description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Button */}
-              <div
-                className="text-center lg:text-left"
-                data-aos="fade-up"
-                data-aos-delay="500"
-              >
+              {/* زر مشاهدة الكل */}
+              <div className="text-center lg:text-left" data-aos="fade-up" data-aos-delay="500">
                 <button className="theme-btn">
                   <span className="text-flip">
                     <span className="text">View All</span>
