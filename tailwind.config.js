@@ -1,7 +1,6 @@
 // tailwind.config.js
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
-import { defineConfig } from 'vite';
 
 export default {
   // Enable dark mode with the 'class' strategy.

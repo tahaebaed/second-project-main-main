@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+import { useTheme } from '../../hooks/useTheme';
 
 const ArticlesSection = () => {
+  const { isDark } = useTheme();
+  
   useEffect(() => {
     // AOS Animation Logic
     const handleScroll = () => {
@@ -77,7 +80,9 @@ const ArticlesSection = () => {
         }
       `}</style>
       
-      <div className="min-h-screen bg-black text-white py-16 px-4 md:px-8">
+      <div className={`min-h-screen py-16 px-4 md:px-8 transition-colors duration-300 ${
+        isDark ? 'bg-black text-white' : 'bg-white text-gray-900'
+      }`}>
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="mb-16" data-aos="fade-up">
@@ -86,7 +91,7 @@ const ArticlesSection = () => {
             </div>
             
             <div className="flex justify-between items-end">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold max-w-2xl leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold max-w-2xl leading-tight transition-colors duration-300">
                 Stay Updated with Our Recent Articles
               </h1>
               
@@ -102,7 +107,7 @@ const ArticlesSection = () => {
               <div
                 key={article.id}
                 data-aos={index === 0 ? "fade-right" : "fade-left"}
-                className="bg-zinc-900 rounded-2xl overflow-hidden hover:bg-zinc-800 transition-colors cursor-pointer"
+                className="bg-gray-100 dark:bg-zinc-900 rounded-2xl overflow-hidden hover:bg-gray-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Image */}
