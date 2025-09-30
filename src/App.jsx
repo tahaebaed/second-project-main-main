@@ -4,15 +4,10 @@ import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./App.css";
-import Header from "./Pages/Header/Header";
-import Home from "./Pages/Home";
-import Footer from "./Pages/Footer";
-import About from "./Pages/About";
-import { ThemeProvider } from "./contexts/ThemeProvider";
-import ServicesPage from "./Pages/ServicesPage";
-import Contact from "./Pages/Contact";
-import ProjectsSection from "./Pages/ProjectsSection";
 
+import { ThemeProvider } from "./contexts/ThemeProvider";
+
+import { Outlet } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -30,14 +25,7 @@ function App() {
     <ThemeProvider>
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          {/* <ProjectsSection/> */}
-          <Header /> 
-           {/* <Contact />  */}
-             <ServicesPage />   
-          {/* <Home /> */}
-     {/* <About />   */}
-          <Footer />
-
+          <Outlet />
         </div>
       </div>
     </ThemeProvider>
