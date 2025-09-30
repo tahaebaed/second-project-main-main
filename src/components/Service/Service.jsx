@@ -124,33 +124,30 @@ export default function Service() {
 
   /* Primary Color Definition */
   .bg-primary {
-    background: linear-gradient(135deg, #10b981, #059669);
+    background: #93ec4c;
   }
   .text-primary {
-    color: #10b981;
+    color:black;
   }
-  .border-primary {
-    border-color: #10b981;
-  } 
+
 `}</style>
 
 
       <section
-        className={`relative py-24 transition-colors duration-300 ${
+        className={`relative py-10 md:py-20 transition-colors duration-300 ${
           isDark ? 'bg-[#0e0f11]' : 'bg-[#cfcaca9c]'
         }`}
       >
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-7xl text-center md:text-left">
           {/* Header */}
           <div className="flex flex-wrap items-end mb-16">
             <div className="w-full lg:w-1/2 mb-8">
-              <div className="section-title" data-aos="fade-right">
-                <span className="inline-flex items-center border border-[#9CFE4F] rounded-full px-4 py-2 mb-5">
+              <div className="section-title text-center md:text-left" data-aos="fade-right">
+                <span className="inline-flex items-center border border-[#93e850] rounded-full px-4 py-2 mb-5">
                   Our Service
-                  <span className="w-12 h-px bg-[#9CFE4F] ml-2"></span>
                 </span>
                 <h2
-                  className={`text-4xl lg:text-5xl font-bold leading-tight ${
+                  className={`text-2xl lg:text-5xl font-bold leading-tight ${
                     isDark ? 'text-white' : 'text-gray-900'
                   }`}
                 >
@@ -161,7 +158,7 @@ export default function Service() {
 
             <div className="w-full lg:w-1/2">
               <div
-                className="text-box lg:float-right w-[330px]"
+                className="text-box lg:float-right text-[100%] md:w-[330px]"
                 data-aos="fade-left"
               >
                 <p

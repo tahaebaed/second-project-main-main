@@ -8,13 +8,13 @@ import "swiper/css/navigation";
 import { Pagination, Autoplay } from "swiper/modules";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useTheme } from "../../hooks/useTheme"; // ✅ استدعاء الهوك هنا
+import { useTheme } from "../../hooks/useTheme"; 
 
 const testimonials = [
   {
     text: "Binorly Agency completely transformed our online presence! Their exceptional website development expertise went beyond expectations, creating a visually stunning and user-friendly website. The team's attention to detail and commitment is unmatched!",
-    author: "Ms. Alex Mika",
-    role: "CEO & Founder",
+    author: "Reem Gbr",
+    role: "Frontend Developer",
   },
   {
     text: "Working with Binorly Agency was a game changer for our business. Their creativity, professionalism, and technical skills exceeded all our expectations!",
@@ -26,15 +26,21 @@ const testimonials = [
     author: "Sophia Lee",
     role: "Project Manager",
   },
+
+
+    {
+    text: "Binorly Agency completely transformed our online presence! Their exceptional website development expertise to beyond expectations, creating a visually stunning and user-friendly website. The team's attention to detail and commitment to!",
+    author: "Ms. Alex Mika",
+    role: "CEO & Founder",
+  },
 ];
 
 const Testimonial = () => {
-  const { isDark } = useTheme(); // ✅ داخل المكوّن
-
+  const { isDark } = useTheme(); 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // سرعة الأنيميشن
-      once: false,    // تكرار مع كل scroll
+      duration: 1000,
+      once: false,    
     });
   }, []);
 
@@ -42,15 +48,12 @@ const Testimonial = () => {
     <section
       className={`relative py-20 md:py-32 overflow-hidden transition-colors duration-300 
       ${isDark ? "bg-[#18191B]" : "bg-gray-50"}`}
-    >
-      {/* دوائر ديكورية */}
-      <div className="absolute top-0 right-0 w-[300px] md:w-[450px] h-[300px] md:h-[450px] rounded-full border-[40px] md:border-[60px] border-white/5 translate-x-1/3 -translate-y-1/3"></div>
-      <div className="absolute bottom-0 left-0 w-[250px] md:w-[350px] h-[250px] md:h-[350px] rounded-full border-[35px] md:border-[50px] border-white/5 -translate-x-1/3 translate-y-1/3"></div>
+    >      <div className={isDark?"absolute top-0 right-0 w-[300px] md:w-[450px] h-[300px] md:h-[450px] rounded-full border-[40px] md:border-[60px] border-white/5 translate-x-1/3 -translate-y-1/3":"absolute top-0 right-0 w-[300px] md:w-[450px] h-[300px] md:h-[450px] rounded-full border-[40px] md:border-[60px] border-[#e2dfdf8a] translate-x-1/3 -translate-y-1/3"}></div>
+      <div className={isDark?"absolute bottom-0 left-0 w-[250px] md:w-[350px] h-[250px] md:h-[350px] rounded-full border-[35px] md:border-[50px] border-white/5 -translate-x-1/3 translate-y-1/3":"absolute bottom-0 left-0 w-[250px] md:w-[350px] h-[250px] md:h-[350px] rounded-full border-[35px] md:border-[50px] border-[#e2dfdf8a] -translate-x-1/3 translate-y-1/3"}></div>
 
       <div className="container mx-auto relative z-10 px-4">
-        {/* العنوان */}
         <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
-          <span className="inline-block px-4 py-1 text-sm border border-green-400 rounded-full text-green-400 mb-4">
+          <span className= {isDark?"inline-block px-4 py-1 text-[16px] border border-[#93e850] rounded-full text-white mb-4":"inline-block px-4 py-1 text-[16px] border border-[#93e850] rounded-full text-black mb-4"}>
             Testimonial
           </span>
           <h2
@@ -61,9 +64,7 @@ const Testimonial = () => {
           </h2>
         </div>
 
-        {/* المحتوى */}
         <div className="flex flex-col lg:flex-row items-center gap-10 justify-center mx-auto">
-          {/* صورة ثابتة */}
           <div
             className="w-full lg:w-1/3 order-1 lg:order-none"
             data-aos="fade-right"
@@ -75,7 +76,6 @@ const Testimonial = () => {
             />
           </div>
 
-          {/* سلايدر الشهادات */}
           <div className="w-full lg:w-2/3 relative" data-aos="fade-left">
             <div
               className={`absolute -top-10 left-0 text-[60px] md:text-[90px] font-extrabold select-none transition-colors duration-300
@@ -86,7 +86,6 @@ const Testimonial = () => {
 
             <Swiper
               modules={[Pagination, Autoplay]}
-              pagination={{ clickable: true }}
               autoplay={{ delay: 4000 }}
               loop={true}
               className="w-full"

@@ -71,6 +71,8 @@ export default function Company() {
           {/* ✅ شبكة العملاء */}
           <div className="w-full lg:w-7/12 px-4" data-aos="fade-left">
             <div className="grid grid-cols-3">
+
+
               {clients.map((client, index) => (
                 <div
                   key={client.id}
@@ -79,8 +81,8 @@ export default function Company() {
                   className={`client-item border py-[58px] px-[20px] text-center transition-all duration-300 
                     ${
                       isDark
-                        ? "border-[#313131] hover:border-[#9CFE4F]"
-                        : "border-gray-200 hover:border-[#9CFE4F]"
+                        ? "border-[#313131] "
+                        : "border-gray-200 "
                     }`}
                 >
                   <img

@@ -7,6 +7,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+
 // ✅ بيانات الفريق
 const teamMembers = [
   { name: "Member 1", image: "./src/assets/team1 (1).jpg" },

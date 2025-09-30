@@ -17,30 +17,51 @@ const TeamSection = () => {
   }, []);
 
   const teamMembers = [
-    { id: 1, name: "Mr. David Liam", role: "Developer", image: "src/assets/team1.webp" },
-    { id: 2, name: "Jessica Sherlock Dina", role: "Web Designer", image: "src/assets/team2.webp" },
-    { id: 3, name: "Mr. Adam Smith Roy", role: "Video Editor", image: "src/assets/team3.webp" },
-    { id: 4, name: "Miss Alex Mika", role: "Marketer", image: "src/assets/team4.webp" },
+    {
+      id: 1,
+      name: "Mr. David Liam",
+      role: "Developer",
+      image: "src/assets/team1.webp",
+    },
+    {
+      id: 2,
+      name: "Jessica Sherlock Dina",
+      role: "Web Designer",
+      image: "src/assets/team2.webp",
+    },
+    {
+      id: 3,
+      name: "Mr. Adam Smith Roy",
+      role: "Video Editor",
+      image: "src/assets/team3.webp",
+    },
+    {
+      id: 4,
+      name: "Miss Alex Mika",
+      role: "Marketer",
+      image: "src/assets/team4.webp",
+    },
   ];
 
   return (
     <section
-      className={`py-20 px-6 transition-colors duration-300 ${
+      className={`py-10 md:py-20 px-6 transition-colors duration-300 ${
         isDark ? "bg-[#0e0f11]" : "bg-white"
       }`}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-16">
-          <div className="mb-8 lg:mb-0">
+        <div className="flex flex-col lg:flex-row items-center lg:justify-between  mb-16">
+          <div className="mb-8 lg:mb-0 text-center md:text-left">
             <span
-              className="inline-block border border-green-500 text-green-500 px-5 py-1 rounded-full text-sm font-medium mb-6"
-              data-aos="fade-up"
-            >
-              Our Team
-            </span>
+          className={`border px-5 py-1.5 rounded-full text-xs font-normal 
+          ${isDark ? "border-[#9CFE4F] text-white text-[16px] " : "border-[#93ec4c] text-black text-[16px]"}`}
+        >
+          Our Team
+
+        </span>
             <h2
-              className={`text-4xl sm:text-5xl font-bold leading-snug transition-colors duration-300 ${
+              className={`text-4xl mt-8 sm:text-5xl font-bold leading-snug transition-colors duration-300 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
               data-aos="fade-up"
@@ -51,13 +72,12 @@ const TeamSection = () => {
             </h2>
           </div>
 
-          <button
-            className="bg-green-500 text-black font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:bg-green-600"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            View Teams
-          </button>
+    <button className="theme-btn">
+                  <span className="text-flip">
+                    <span className="text">View All</span>
+                    <span className="text">View All</span>
+                  </span>
+                </button>
         </div>
 
         {/* Team Grid */}
@@ -74,9 +94,10 @@ const TeamSection = () => {
                 <img
                   src={member.image}
                   alt={member.name}
+              
                   className="w-full h-[400px] object-cover rounded-xl shadow-md transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 w-10 h-10 bg-white  text-black rounded-full flex items-center justify-center text-2xl font-bold shadow-lg ">
+                <div className={"absolute top-4 right-4 w-10 h-10 bg-white  text-black rounded-full flex items-center justify-center text-2xl font-bold shadow-lg "}>
                   +
                 </div>
               </div>
