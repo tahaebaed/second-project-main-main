@@ -6,6 +6,8 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./App.css";
 
 import { ThemeProvider } from "./contexts/ThemeProvider";
+import Header from "./Pages/Header/Header";
+import Footer from "./Pages/Footer";
 
 import { Outlet } from "react-router-dom";
 
@@ -25,7 +27,9 @@ function App() {
     <ThemeProvider>
       <div id="smooth-wrapper">
         <div id="smooth-content">
+          <Header />
           <Outlet />
+          <Footer />
         </div>
       </div>
     </ThemeProvider>

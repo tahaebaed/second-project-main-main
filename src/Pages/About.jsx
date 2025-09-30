@@ -10,11 +10,11 @@ import "swiper/css/pagination";
 
 // ✅ بيانات الفريق
 const teamMembers = [
-  { name: "Member 1", image: "./src/assets/team1 (1).jpg" },
-  { name: "Member 2", image: "./src/assets/team5.jpg" },
-  { name: "Member 3", image: "./src/assets/team4 (1).jpg" },
-  { name: "Member 4", image: "./src/assets/team3 (1).jpg" },
-  { name: "Member 5", image: "./src/assets/team4.webp" },
+  { name: "Member 1", image: "/src/assets/team1.webp" },
+  { name: "Member 2", image: "/src/assets/team2.webp" },
+  { name: "Member 3", image: "/src/assets/team3.webp" },
+  { name: "Member 4", image: "/src/assets/team4.webp" },
+  { name: "Member 5", image: "/src/assets/team1.webp" },
 ];
 
 // ✅ بيانات الخدمات
@@ -134,7 +134,7 @@ export default function HomePage() {
               <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
                 <img
                   className="w-12 h-12 md:w-16 md:h-16 animate-[spin_10s_linear_infinite_reverse]"
-                  src="./src/assets/star1.png"
+                  src="/src/assets/star1.png"
                   alt="Star Shape"
                 />
                 <p className="text-sm md:text-base lg:text-lg text-[#9E9FA0] max-w-md leading-relaxed">
@@ -152,7 +152,7 @@ export default function HomePage() {
               </div>
               <img
                 className="animate-[spin_10s_linear_infinite_reverse]"
-                src="./src/assets/circle-shape1.png"
+                src="/src/assets/circle-shape1.png"
                 alt="Circle Shape"
               />
             </div>
@@ -206,7 +206,7 @@ export default function HomePage() {
 
           <div className="w-full lg:w-5/12 relative" data-aos="zoom-in" data-aos-delay="300">
             <img
-              src="./src/assets/team3.webp"
+              src="/src/assets/team3.webp"
               alt="About Agenko"
               className="rounded-xl w-full object-cover"
             />
