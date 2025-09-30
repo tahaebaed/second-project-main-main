@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../../hooks/useTheme";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { isDark, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const navItems = ["Home", "Pages", "Portfolio", "Blog", "Contact"];
+  const navItems = [{id: 1, name: "Home", link: ""}, {id: 2, name: "Projects", link: "projects"}, {id: 3, name: "Services", link: "services"}, {id: 4, name: "Contact", link: "contact"}];
 
-  const toggleMenu = () => {
+  const toggleMenu = (link ) => {
     setIsMenuOpen(!isMenuOpen);
+
+    navigate(`/${link}`);
   };
 
   useEffect(() => {
@@ -106,7 +110,7 @@ export default function Header() {
       `}</style>
       
       <div className="transition-colors duration-300">
-        <header className="px-6 py-4 fixed top-0 left-0 w-full z-50">
+        <header className="px-6 py-4 fixed top-0 left-0 w-full z-[500]">
           <nav
             className={
               isDark
@@ -140,14 +144,15 @@ export default function Header() {
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
                 <button
-                  key={item}
+                  key={item.id}
+                  onClick={() => navigate(`/${item.link}`)}
                   className={
                     isDark
                       ? "px-4 py-2 text-white hover:text-green-500 dark:hover:text-green-400 transition-colors rounded-full hover:bg-gray-100/50 dark:hover:bg-white/5"
                       : "px-4 py-2 text-gray-700 hover:text-green-500 dark:hover:text-green-400 transition-colors rounded-full hover:bg-gray-100/50 dark:hover:bg-white/5"
                   }
                 >
-                  {item}
+                  {item.name}
                 </button>
               ))}
             </div>
@@ -258,9 +263,9 @@ export default function Header() {
               {/* Menu Items */}
               <div className="flex-1 overflow-y-auto py-8">
                 <nav className="flex flex-col space-y-1 px-4">
-                  {navItems.map((item, index) => (
+                  {navItems.map((item) => (
                     <button
-                      key={item}
+                      key={item.id}
                       onClick={toggleMenu}
                       className={`menu-item text-left px-6 py-4 rounded-2xl transition-all transform hover:scale-105 hover:translate-x-2 ${
                         isDark
@@ -268,7 +273,7 @@ export default function Header() {
                           : "text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-transparent hover:text-green-600 hover:shadow-md"
                       }`}
                     >
-                      <span className="text-lg font-medium">{item}</span>
+                      <span className="text-lg font-medium">{item.name}</span>
                     </button>
                   ))}
                 </nav>
